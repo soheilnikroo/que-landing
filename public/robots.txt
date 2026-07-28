@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://saf.queuegrow-app.com/sitemap-index.xml

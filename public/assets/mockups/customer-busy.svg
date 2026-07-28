@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 844" role="img" aria-label="وضعیت صف">
+  <rect width="390" height="844" fill="#f5f8f6"/>
+  <rect width="390" height="64" fill="#40916c"/>
+  <text x="195" y="42" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="17" font-weight="700">رستوران نارنجستان</text>
+  <rect x="28" y="100" width="334" height="200" rx="22" fill="#fff" stroke="#d5e0d9"/>
+  <text x="195" y="160" text-anchor="middle" fill="#5f6d66" font-family="system-ui,sans-serif" font-size="14">الان در صف</text>
+  <text x="195" y="230" text-anchor="middle" fill="#1b4332" font-family="system-ui,sans-serif" font-size="64" font-weight="800">۳</text>
+  <text x="195" y="268" text-anchor="middle" fill="#40916c" font-family="system-ui,sans-serif" font-size="15" font-weight="600">نفر</text>
+  <rect x="28" y="324" width="334" height="72" rx="16" fill="#fff" stroke="#d5e0d9"/>
+  <text x="48" y="356" fill="#5f6d66" font-family="system-ui,sans-serif" font-size="14">زمان تقریبی انتظار</text>
+  <text x="342" y="356" text-anchor="end" fill="#1b4332" font-family="system-ui,sans-serif" font-size="18" font-weight="700">~۱۵ دقیقه</text>
+  <text x="48" y="382" fill="#5f6d66" font-family="system-ui,sans-serif" font-size="14">میانگین هر نفر</text>
+  <text x="342" y="382" text-anchor="end" fill="#40916c" font-family="system-ui,sans-serif" font-size="15" font-weight="600">~۵ دقیقه</text>
+  <rect x="28" y="760" width="334" height="52" rx="26" fill="#40916c"/>
+  <text x="195" y="792" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="16" font-weight="700">پیوستن به صف</text>
+</svg>

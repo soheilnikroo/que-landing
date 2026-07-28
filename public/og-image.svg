@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="og-title">
+  <title id="og-title">5A  E/Ì1Ì* 5A 13*H1'F</title>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#dceee4" />
+      <stop offset="55%" stop-color="#f5f8f6" />
+      <stop offset="100%" stop-color="#e8f0eb" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#40916c" />
+      <stop offset="100%" stop-color="#1b4332" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <circle cx="980" cy="120" r="180" fill="#40916c" opacity="0.12" />
+  <circle cx="180" cy="520" r="220" fill="#1b4332" opacity="0.08" />
+  <rect x="80" y="80" width="1040" height="470" rx="32" fill="#ffffff" opacity="0.72" />
+  <rect x="120" y="140" width="88" height="88" rx="20" fill="url(#accent)" />
+  <text x="168" y="198" text-anchor="middle" font-family="Tahoma, Arial, sans-serif" font-size="42" font-weight="700" fill="#ffffff">5</text>
+  <text x="240" y="188" font-family="Tahoma, Arial, sans-serif" font-size="56" font-weight="800" fill="#1b4332">5A</text>
+  <text x="240" y="232" font-family="Tahoma, Arial, sans-serif" font-size="28" font-weight="600" fill="#40916c">E/Ì1Ì* 5A 13*H1'F</text>
+  <text x="120" y="320" font-family="Tahoma, Arial, sans-serif" font-size="40" font-weight="700" fill="#14201a">(/HF 'Ì3*'/F /1 5A FH(* (¯Ì1Ì/</text>
+  <text x="120" y="380" font-family="Tahoma, Arial, sans-serif" font-size="28" fill="#5f6d66">PWA · '9D'F D-8G'Ì · '~ EGE'F H ~13FD</text>
+  <rect x="120" y="420" width="280" height="64" rx="32" fill="#1b4332" />
+  <text x="260" y="462" text-anchor="middle" font-family="Tahoma, Arial, sans-serif" font-size="24" font-weight="700" fill="#ffffff">41H9 '~ EGE'F</text>
+</svg>

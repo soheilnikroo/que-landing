@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 844" role="img" aria-label="وضعیت میزها">
+  <rect width="390" height="844" fill="#f2ece4"/>
+  <rect width="390" height="64" fill="#2e3440"/>
+  <text x="195" y="42" text-anchor="middle" fill="#f2ece4" font-family="system-ui,sans-serif" font-size="17" font-weight="700">میزها</text>
+  <g font-family="system-ui,sans-serif" font-size="13" font-weight="700">
+    <rect x="28" y="88" width="100" height="80" rx="14" fill="#e8e0d4"/><text x="78" y="134" text-anchor="middle" fill="#6b6258">میز ۱</text>
+    <rect x="145" y="88" width="100" height="80" rx="14" fill="#40916c" opacity="0.85"/><text x="195" y="126" text-anchor="middle" fill="#fff">خالی</text><text x="195" y="148" text-anchor="middle" fill="#fff" font-size="12">۲ نفره</text>
+    <rect x="262" y="88" width="100" height="80" rx="14" fill="#2e3440" opacity="0.75"/><text x="312" y="126" text-anchor="middle" fill="#fff">پر</text><text x="312" y="148" text-anchor="middle" fill="#f2ece4" font-size="12">۴ نفره</text>
+    <rect x="28" y="184" width="100" height="80" rx="14" fill="#b08d57" opacity="0.9"/><text x="78" y="222" text-anchor="middle" fill="#fff">پیشنهاد</text><text x="78" y="244" text-anchor="middle" fill="#fff" font-size="12">۶ نفره</text>
+    <rect x="145" y="184" width="100" height="80" rx="14" fill="#e8e0d4"/><text x="195" y="230" text-anchor="middle" fill="#6b6258">میز ۵</text>
+    <rect x="262" y="184" width="100" height="80" rx="14" fill="#2e3440" opacity="0.75"/><text x="312" y="222" text-anchor="middle" fill="#fff">پر</text>
+    <rect x="28" y="280" width="100" height="80" rx="14" fill="#fff" stroke="#d8cec0" stroke-dasharray="6 4"/><text x="78" y="326" text-anchor="middle" fill="#b08d57">تمیز</text>
+    <rect x="145" y="280" width="100" height="80" rx="14" fill="#40916c" opacity="0.85"/><text x="195" y="318" text-anchor="middle" fill="#fff">خالی</text><text x="195" y="340" text-anchor="middle" fill="#fff" font-size="12">۲ نفره</text>
+    <rect x="262" y="280" width="100" height="80" rx="14" fill="#e8e0d4"/><text x="312" y="326" text-anchor="middle" fill="#6b6258">میز ۸</text>
+  </g>
+  <rect x="28" y="400" width="334" height="64" rx="16" fill="#fff" stroke="#d8cec0"/>
+  <text x="48" y="430" fill="#6b6258" font-family="system-ui,sans-serif" font-size="14">پیشنهاد برای خانواده احمدی</text>
+  <text x="48" y="454" fill="#b08d57" font-family="system-ui,sans-serif" font-size="15" font-weight="700">میز ۴ — ۶ نفره</text>
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 844" role="img" aria-label="جای شما در صف">
+  <rect width="390" height="844" fill="#f5f8f6"/>
+  <rect width="390" height="64" fill="#40916c"/>
+  <text x="195" y="42" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="17" font-weight="700">صف زنده</text>
+  <circle cx="195" cy="260" r="100" fill="none" stroke="#d5e0d9" stroke-width="10"/>
+  <circle cx="195" cy="260" r="100" fill="none" stroke="#40916c" stroke-width="10" stroke-dasharray="440" stroke-dashoffset="120" stroke-linecap="round" transform="rotate(-90 195 260)"/>
+  <text x="195" y="248" text-anchor="middle" fill="#5f6d66" font-family="system-ui,sans-serif" font-size="14">جای شما</text>
+  <text x="195" y="290" text-anchor="middle" fill="#1b4332" font-family="system-ui,sans-serif" font-size="52" font-weight="800">۴</text>
+  <text x="195" y="360" text-anchor="middle" fill="#40916c" font-family="system-ui,sans-serif" font-size="16" font-weight="600">۳ نفر جلوتر از شما</text>
+  <rect x="28" y="420" width="334" height="64" rx="16" fill="#fff" stroke="#d5e0d9"/>
+  <text x="48" y="450" fill="#5f6d66" font-family="system-ui,sans-serif" font-size="14">زمان تقریبی</text>
+  <text x="342" y="450" text-anchor="end" fill="#1b4332" font-family="system-ui,sans-serif" font-size="17" font-weight="700">~۱۲ دقیقه</text>
+  <text x="48" y="474" fill="#5f6d66" font-family="system-ui,sans-serif" font-size="13">می‌توانید بیرون بروید — اعلان می‌گیرید</text>
+  <rect x="28" y="520" width="334" height="56" rx="16" fill="#e4f0e8"/>
+  <text x="195" y="554" text-anchor="middle" fill="#40916c" font-family="system-ui,sans-serif" font-size="14" font-weight="600">🔔 وقتی نوبتتان شد خبر می‌دهیم</text>
+</svg>

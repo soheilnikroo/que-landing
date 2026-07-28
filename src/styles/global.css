@@ -1,0 +1,176 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/vazirmatn';
+
+:root {
+  --color-primary: #1b4332;
+  --color-accent: #40916c;
+  --color-canvas: #f5f8f6;
+  --color-foreground: #14201a;
+  --color-muted: #5f6d66;
+  --color-secondary: #e4f0e8;
+  --color-border: #d5e0d9;
+  --sw-bg: #f5f8f6;
+  --sw-ink: #14201a;
+  --sw-ink-soft: #5f6d66;
+  --sw-accent: #40916c;
+  --sw-font-display: 'Vazirmatn Variable', Vazirmatn, ui-sans-serif, system-ui, sans-serif;
+  --sw-font-body: 'Vazirmatn Variable', Vazirmatn, ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Scroll-act themes — customer (green) → waiter (warm slate + gold) */
+html[data-scroll-act='customer'] {
+  --color-canvas: #f5f8f6;
+  --sw-bg: #f5f8f6;
+  --sw-accent: #40916c;
+}
+
+html[data-scroll-act='transition'] {
+  --color-canvas: #f3f0ea;
+  --sw-bg: #f3f0ea;
+  --sw-accent: #5f8f72;
+}
+
+html[data-scroll-act='waiter'] {
+  --color-canvas: #f2ece4;
+  --color-primary: #2e3440;
+  --color-accent: #b08d57;
+  --color-muted: #6b6258;
+  --color-secondary: #e8e0d4;
+  --color-border: #d8cec0;
+  --sw-bg: #f2ece4;
+  --sw-accent: #b08d57;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--sw-font-body);
+  background: var(--color-canvas);
+  color: var(--color-foreground);
+  text-rendering: optimizeLegibility;
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+:where(a, button, summary, input, textarea, select, [tabindex]:not([tabindex='-1'])):focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  inset-inline-start: 1rem;
+  top: 1rem;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: #fff;
+  text-decoration: none;
+  transform: translateY(-200%);
+  transition: transform 0.2s ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.section-shell {
+  width: min(1120px, calc(100% - 2rem));
+  margin-inline: auto;
+}
+
+.post-journey {
+  position: relative;
+  z-index: 50;
+  background: var(--color-canvas);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(1.25rem);
+  transition:
+    opacity 0.5s ease,
+    visibility 0.5s ease,
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  scroll-margin-top: 1.5rem;
+}
+
+html[data-journey-complete='true'] .post-journey,
+#faq:target,
+#apps:target,
+#features:target,
+footer.post-journey:target,
+.post-journey:focus-within {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: none;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  background: #123528;
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  border-radius: 999px;
+  border: 1.5px solid color-mix(in srgb, var(--color-primary) 25%, transparent);
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.btn-ghost:hover {
+  transform: translateY(-1px);
+}

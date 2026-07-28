@@ -1,0 +1,25 @@
+---
+import { APP_ORIGIN, WAITER_ORIGIN } from '@/content/app-urls'
+import { BRAND_LOGO_SRC } from '@/content/brand'
+
+const year = new Date().getFullYear()
+---
+
+<footer id="site-footer" class="post-journey border-t border-[var(--color-border)] bg-white py-10">
+  <div class="section-shell flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+    <div>
+      <div class="flex items-center gap-2">
+        <img src={BRAND_LOGO_SRC} alt="" width="32" height="32" class="rounded-lg" decoding="async" />
+        <p class="text-lg font-bold text-[var(--color-primary)]">صف</p>
+      </div>
+      <p class="mt-1 text-sm text-[var(--color-muted)]">مدیریت صف رستوران</p>
+    </div>
+    <nav aria-label="لینک‌های پایانی" class="flex flex-wrap gap-4 text-sm">
+      <a class="text-[var(--color-primary)] hover:underline" href={`${APP_ORIGIN}/`}>اپ مهمان</a>
+      <a class="text-[var(--color-primary)] hover:underline" href={`${WAITER_ORIGIN}/`}>پنل پرسنل</a>
+      <a class="text-[var(--color-primary)] hover:underline" href="#apps">شروع کنید</a>
+      <a class="text-[var(--color-primary)] hover:underline" href="#faq">سوالات</a>
+    </nav>
+    <p class="text-sm text-[var(--color-muted)]">© {year} صف</p>
+  </div>
+</footer>

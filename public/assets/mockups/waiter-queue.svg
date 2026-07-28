@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 844" role="img" aria-label="لیست صف پرسنل">
+  <rect width="390" height="844" fill="#f2ece4"/>
+  <rect width="390" height="64" fill="#2e3440"/>
+  <text x="195" y="42" text-anchor="middle" fill="#f2ece4" font-family="system-ui,sans-serif" font-size="17" font-weight="700">لیست صف</text>
+  <text x="28" y="96" fill="#6b6258" font-family="system-ui,sans-serif" font-size="13" font-weight="600">۵ مهمان منتظر</text>
+  <rect x="28" y="112" width="334" height="76" rx="16" fill="#fff" stroke="#d8cec0"/>
+  <rect x="44" y="128" width="40" height="40" rx="10" fill="#2e3440"/><text x="64" y="154" text-anchor="middle" fill="#b08d57" font-family="system-ui,sans-serif" font-size="16" font-weight="800">۱</text>
+  <text x="100" y="146" fill="#2e3440" font-family="system-ui,sans-serif" font-size="15" font-weight="700">خانواده احمدی</text>
+  <text x="100" y="168" fill="#6b6258" font-family="system-ui,sans-serif" font-size="13">۴ نفر · ۸ دقیقه · میز ۶ نفره</text>
+  <rect x="28" y="204" width="334" height="76" rx="16" fill="#fff" stroke="#d8cec0"/>
+  <rect x="44" y="220" width="40" height="40" rx="10" fill="#e8e0d4"/><text x="64" y="246" text-anchor="middle" fill="#6b6258" font-family="system-ui,sans-serif" font-size="16" font-weight="800">۲</text>
+  <text x="100" y="238" fill="#2e3440" font-family="system-ui,sans-serif" font-size="15" font-weight="700">آقای رضایی</text>
+  <text x="100" y="260" fill="#6b6258" font-family="system-ui,sans-serif" font-size="13">۲ نفر · ۵ دقیقه · میز ۲ نفره</text>
+  <rect x="28" y="296" width="334" height="76" rx="16" fill="#fff" stroke="#d8cec0"/>
+  <rect x="44" y="312" width="40" height="40" rx="10" fill="#e8e0d4"/><text x="64" y="338" text-anchor="middle" fill="#6b6258" font-family="system-ui,sans-serif" font-size="16" font-weight="800">۳</text>
+  <text x="100" y="330" fill="#2e3440" font-family="system-ui,sans-serif" font-size="15" font-weight="700">خانم کریمی</text>
+  <text x="100" y="352" fill="#6b6258" font-family="system-ui,sans-serif" font-size="13">۳ نفر · ۳ دقیقه · میز ۴ نفره</text>
+  <rect x="28" y="760" width="334" height="52" rx="26" fill="#2e3440"/>
+  <text x="195" y="792" text-anchor="middle" fill="#f2ece4" font-family="system-ui,sans-serif" font-size="16" font-weight="700">فراخوانی مهمان بعدی</text>
+</svg>

@@ -1,0 +1,32 @@
+---
+import { scrollSections } from '@/content/scroll-sections'
+---
+
+<section class="seo-fallback">
+  <h1 class="sr-only">صف — مدیریت صف رستوران</h1>
+  <ol class="seo-fallback__list">
+    {
+      scrollSections.map((section) => (
+        <li>
+          <h2>{section.title}</h2>
+          <p>{section.body}</p>
+        </li>
+      ))
+    }
+  </ol>
+</section>
+
+<style>
+  .seo-fallback {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+</style>

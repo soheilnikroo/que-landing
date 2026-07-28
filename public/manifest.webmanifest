@@ -1,0 +1,26 @@
+{
+  "name": "صف — مدیریت صف رستوران",
+  "short_name": "صف",
+  "description": "بدون ایستادن در صف نوبت بگیرید. صف برای مهمان و پرسنل رستوران.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f5f8f6",
+  "theme_color": "#1b4332",
+  "lang": "fa-IR",
+  "dir": "rtl",
+  "icons": [
+    {
+      "src": "/assets/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}

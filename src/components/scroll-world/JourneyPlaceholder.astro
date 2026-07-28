@@ -1,0 +1,121 @@
+---
+import { APP_ORIGIN } from '@/content/app-urls'
+import { BRAND_LOGO_SRC } from '@/content/brand'
+import { scrollSections } from '@/content/scroll-sections'
+
+const hero = scrollSections[0]
+---
+
+<section
+  id="journey-placeholder"
+  class="journey-placeholder"
+  aria-label="معرفی صف"
+  aria-busy="true"
+>
+  <header class="journey-placeholder__header">
+    <a class="journey-placeholder__brand" href="#top">
+      <img src={BRAND_LOGO_SRC} alt="" width="36" height="36" />
+      <span>
+        <strong>صف</strong>
+        <small>مدیریت صف رستوران</small>
+      </span>
+    </a>
+    <a class="journey-placeholder__cta" href={APP_ORIGIN + '/'}>شروع اپ مهمان</a>
+  </header>
+
+  <div class="journey-placeholder__body">
+    <p class="journey-placeholder__eyebrow">{hero.eyebrow}</p>
+    <h1 class="journey-placeholder__title">{hero.title}</h1>
+    <p class="journey-placeholder__text">{hero.body}</p>
+    <p class="journey-placeholder__hint" role="status">در حال بارگذاری تجربه اسکرول…</p>
+  </div>
+</section>
+
+<style>
+  .journey-placeholder {
+    position: fixed;
+    inset: 0;
+    z-index: 39;
+    display: flex;
+    flex-direction: column;
+    background: var(--color-canvas);
+    padding: clamp(1rem, 4vw, 2rem);
+  }
+
+  .journey-placeholder[hidden] {
+    display: none;
+  }
+
+  .journey-placeholder__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .journey-placeholder__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    text-decoration: none;
+    color: var(--color-foreground);
+  }
+
+  .journey-placeholder__brand strong {
+    display: block;
+    font-size: 1.1rem;
+    color: var(--color-primary);
+  }
+
+  .journey-placeholder__brand small {
+    display: block;
+    font-size: 0.72rem;
+    color: var(--color-muted);
+  }
+
+  .journey-placeholder__cta {
+    padding: 0.55rem 1rem;
+    border-radius: 999px;
+    background: var(--color-primary);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-decoration: none;
+  }
+
+  .journey-placeholder__body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 36rem;
+    margin-inline: auto;
+    text-align: right;
+  }
+
+  .journey-placeholder__eyebrow {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-accent);
+  }
+
+  .journey-placeholder__title {
+    margin: 0.75rem 0 0;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    line-height: 1.08;
+    color: var(--color-primary);
+  }
+
+  .journey-placeholder__text {
+    margin: 1rem 0 0;
+    line-height: 1.6;
+    color: var(--color-muted);
+  }
+
+  .journey-placeholder__hint {
+    margin-top: 1.5rem;
+    font-size: 0.8rem;
+    color: var(--color-muted);
+  }
+</style>

@@ -1,0 +1,58 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import JourneyPlaceholder from '@/components/scroll-world/JourneyPlaceholder.astro'
+import SeoFallback from '@/components/sections/SeoFallback.astro'
+import Features from '@/components/sections/Features.astro'
+import DualApps from '@/components/sections/DualApps.astro'
+import Faq from '@/components/sections/Faq.astro'
+import SiteFooter from '@/components/sections/SiteFooter.astro'
+import { ScrollJourney } from '@/components/scroll-world/ScrollJourney'
+---
+
+<BaseLayout>
+  <div id="top"></div>
+  <main id="main-content">
+    <SeoFallback />
+    <noscript>
+      <section class="section-shell py-16">
+        <h1>صف — مدیریت صف رستوران</h1>
+        <p>برای تجربه کامل اسکرول، جاوااسکریپت را فعال کنید.</p>
+        <p>
+          <a href="https://queuegrow-app.com/">شروع اپ مهمان</a>
+          ·
+          <a href="https://queuegrow-app.com/waiter/">ورود پرسنل</a>
+        </p>
+      </section>
+    </noscript>
+    <JourneyPlaceholder />
+    <ScrollJourney client:idle />
+    <div class="post-journey-stack">
+      <Features />
+      <DualApps />
+      <Faq />
+    </div>
+  </main>
+  <SiteFooter />
+</BaseLayout>
+
+<style>
+  main {
+    position: relative;
+    background: var(--color-canvas);
+  }
+
+  .post-journey-stack {
+    position: relative;
+    z-index: 50;
+  }
+</style>
+
+<script>
+  document.addEventListener('astro:load', () => {
+    const placeholder = document.getElementById('journey-placeholder')
+    if (placeholder) {
+      placeholder.hidden = true
+      placeholder.removeAttribute('aria-busy')
+    }
+  })
+</script>

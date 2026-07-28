@@ -1,0 +1,229 @@
+---
+import { APP_ORIGIN, WAITER_ORIGIN, twaApps } from '@/content/app-urls'
+
+const channels = [
+  {
+    title: 'وب و PWA',
+    body: 'همین حالا در مرورگر باز کنید، یا به صفحهٔ اصلی گوشی اضافه کنید — بدون نصب اجباری.',
+    tone: 'web',
+  },
+  {
+    title: 'اندروید (TWA)',
+    body: 'نسخهٔ نصب‌شدنی برای مهمان و پرسنل، با تجربهٔ اپ کامل و بدون نوار مرورگر.',
+    tone: 'android',
+  },
+]
+
+const apps = [
+  {
+    title: 'اپ مهمان',
+    caption: 'کشف رستوران، پیوستن به صف، و اعلان نوبت',
+    href: `${APP_ORIGIN}/`,
+    cta: 'شروع اپ مهمان',
+    packageId: twaApps[0].packageId,
+    accent: 'customer',
+  },
+  {
+    title: 'پنل پرسنل',
+    caption: 'مدیریت صف، فراخوانی مهمان، و وضعیت میزها',
+    href: `${WAITER_ORIGIN}/`,
+    cta: 'ورود پرسنل',
+    packageId: twaApps[1].packageId,
+    accent: 'waiter',
+  },
+]
+---
+
+<section id="apps" class="post-journey get-started section-shell py-24" aria-labelledby="apps-title">
+  <div class="get-started__intro">
+    <p class="get-started__eyebrow">شروع کنید</p>
+    <h2 id="apps-title" class="get-started__title">وب، PWA یا اندروید — هر طور راحت‌اید</h2>
+    <p class="get-started__body">
+      همان صف را برای مهمان و پرسنل داشته باشید. از مرورگر استفاده کنید، به صفحهٔ اصلی اضافه کنید،
+      یا نسخهٔ اندروید را نصب کنید.
+    </p>
+  </div>
+
+  <div class="get-started__channels" role="list">
+    {
+      channels.map((channel) => (
+        <article class={`get-started__channel get-started__channel--${channel.tone}`} role="listitem">
+          <h3>{channel.title}</h3>
+          <p>{channel.body}</p>
+        </article>
+      ))
+    }
+  </div>
+
+  <div class="get-started__apps">
+    {
+      apps.map((app) => (
+        <article class={`get-started__card get-started__card--${app.accent}`}>
+          <div class="get-started__card-top">
+            <span class="get-started__pill">{app.accent === 'customer' ? 'مهمان' : 'پرسنل'}</span>
+            <h3>{app.title}</h3>
+            <p>{app.caption}</p>
+          </div>
+          <dl class="get-started__meta">
+            <div>
+              <dt>بسته اندروید</dt>
+              <dd dir="ltr">{app.packageId}</dd>
+            </div>
+          </dl>
+          <div class="get-started__actions">
+            <a class="btn-primary" href={app.href}>
+              {app.cta}
+            </a>
+            <a class="btn-ghost" href={app.href} target="_blank" rel="noopener noreferrer">
+              باز کردن در مرورگر
+            </a>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .get-started__intro {
+    max-width: 40rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .get-started__eyebrow {
+    margin: 0;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--color-accent);
+  }
+
+  .get-started__title {
+    margin: 0.75rem 0 0;
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--color-primary);
+  }
+
+  .get-started__body {
+    margin: 1rem 0 0;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--color-muted);
+  }
+
+  .get-started__channels {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+  }
+
+  @media (min-width: 720px) {
+    .get-started__channels {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .get-started__channel {
+    padding: 1.35rem 1.5rem;
+    border-radius: 1.35rem;
+    border: 1px solid var(--color-border);
+    background: color-mix(in srgb, var(--color-secondary) 55%, #fff);
+  }
+
+  .get-started__channel h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--color-primary);
+  }
+
+  .get-started__channel p {
+    margin: 0.55rem 0 0;
+    line-height: 1.65;
+    color: var(--color-muted);
+  }
+
+  .get-started__channel--android {
+    background:
+      linear-gradient(145deg, color-mix(in srgb, var(--color-accent) 12%, #fff), #fff 60%);
+  }
+
+  .get-started__apps {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  @media (min-width: 860px) {
+    .get-started__apps {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .get-started__card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 1.75rem;
+    border-radius: 1.75rem;
+    border: 1px solid var(--color-border);
+    background: #fff;
+    box-shadow: 0 16px 40px rgb(20 32 26 / 6%);
+  }
+
+  .get-started__card--waiter {
+    background: linear-gradient(180deg, #fff 0%, color-mix(in srgb, #f2ece4 70%, #fff) 100%);
+  }
+
+  .get-started__pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    background: color-mix(in srgb, var(--color-accent) 14%, #fff);
+    border: 1px solid color-mix(in srgb, var(--color-accent) 28%, transparent);
+  }
+
+  .get-started__card-top h3 {
+    margin: 0.85rem 0 0;
+    font-size: 1.65rem;
+    font-weight: 800;
+    color: var(--color-primary);
+  }
+
+  .get-started__card-top p {
+    margin: 0.55rem 0 0;
+    line-height: 1.65;
+    color: var(--color-muted);
+  }
+
+  .get-started__meta {
+    margin: 0;
+    padding: 0.9rem 1rem;
+    border-radius: 1rem;
+    background: color-mix(in srgb, var(--color-secondary) 70%, #fff);
+  }
+
+  .get-started__meta dt {
+    font-size: 0.8rem;
+    color: var(--color-muted);
+  }
+
+  .get-started__meta dd {
+    margin: 0.25rem 0 0;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    word-break: break-all;
+  }
+
+  .get-started__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: auto;
+  }
+</style>

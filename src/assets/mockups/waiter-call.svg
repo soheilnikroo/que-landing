@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 844" role="img" aria-label="فراخوانی مهمان">
+  <rect width="390" height="844" fill="#f2ece4"/>
+  <rect width="390" height="64" fill="#2e3440"/>
+  <text x="195" y="42" text-anchor="middle" fill="#f2ece4" font-family="system-ui,sans-serif" font-size="17" font-weight="700">فراخوانی</text>
+  <rect x="28" y="100" width="334" height="220" rx="22" fill="#fff" stroke="#d8cec0"/>
+  <text x="195" y="150" text-anchor="middle" fill="#6b6258" font-family="system-ui,sans-serif" font-size="14">نفر بعدی صف</text>
+  <text x="195" y="210" text-anchor="middle" fill="#2e3440" font-family="system-ui,sans-serif" font-size="28" font-weight="800">خانواده احمدی</text>
+  <text x="195" y="248" text-anchor="middle" fill="#b08d57" font-family="system-ui,sans-serif" font-size="16" font-weight="600">۴ نفر · میز ۶ نفره</text>
+  <text x="195" y="290" text-anchor="middle" fill="#6b6258" font-family="system-ui,sans-serif" font-size="14">۸ دقیقه در صف بوده</text>
+  <rect x="28" y="360" width="334" height="72" rx="20" fill="#b08d57"/>
+  <text x="195" y="404" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="18" font-weight="700">صدا زدن مهمان</text>
+  <rect x="28" y="456" width="334" height="56" rx="16" fill="#fff" stroke="#d8cec0"/>
+  <text x="195" y="490" text-anchor="middle" fill="#6b6258" font-family="system-ui,sans-serif" font-size="14">مهمان روی گوشی اعلان می‌گیرد</text>
+</svg>
