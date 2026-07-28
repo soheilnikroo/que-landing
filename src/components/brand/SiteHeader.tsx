@@ -22,6 +22,8 @@ export function SiteHeader() {
       </a>
 
       <nav className="site-nav" aria-label="ناوبری اصلی">
+        <a href="#features">امکانات</a>
+        <a href="#apps">شروع کنید</a>
         <a href="#faq">سوالات</a>
         <a href={`${WAITER_ORIGIN}/`}>پنل پرسنل</a>
       </nav>

@@ -15,8 +15,6 @@ type AppShowcaseMockupProps = {
   sectionProgress?: number
   actBlend?: number
   inline?: boolean
-  /** Use poster images only — no live iframes (avoids skeleton flash while embeds load). */
-  staticOnly?: boolean
 }
 
 function resolveAct(sections: ScrollSection[], index: number): ScrollAct {
@@ -37,7 +35,6 @@ function usePhoneScale(screenRef: RefObject<HTMLDivElement | null>) {
       const width = screen.clientWidth
       const height = screen.clientHeight
       if (width <= 0 || height <= 0) return
-      // Fit the phone screen like object-fit: contain (no crop, no overflow)
       setScale(Math.min(width / EMBED_VIEWPORT_WIDTH, height / EMBED_VIEWPORT_HEIGHT))
     }
 
@@ -50,67 +47,37 @@ function usePhoneScale(screenRef: RefObject<HTMLDivElement | null>) {
   return scale
 }
 
-function MockupScreen({
-  section,
-  sectionAct,
-  preferLive,
-  isActive,
-  scale,
-}: {
-  section: ScrollSection
-  sectionAct: 'customer' | 'waiter'
-  preferLive: boolean
-  isActive: boolean
-  scale: number
-}) {
-  const [liveFailed, setLiveFailed] = useState(false)
-  const embedUrl = section.mockupEmbedUrl
-  const showLive = preferLive && Boolean(embedUrl) && !liveFailed
+/** Unique live scenes — one iframe per URL, kept mounted to avoid flash/reload */
+function collectEmbedScenes(sections: ScrollSection[]) {
+  const scenes: { url: string; title: string; act: 'customer' | 'waiter' }[] = []
+  const seen = new Set<string>()
 
-  return (
-    <>
-      <img
-        src={section.mockupImage}
-        alt=""
-        draggable={false}
-        decoding="sync"
-        loading="eager"
-        fetchPriority="high"
-        className={`showcase-mockup__screen showcase-mockup__screen--${sectionAct}${showLive ? ' showcase-mockup__screen--poster' : ''}`}
-      />
-      {showLive ? (
-        <iframe
-          className={`showcase-mockup__iframe showcase-mockup__iframe--${sectionAct}`}
-          src={embedUrl}
-          title={section.mockupTitle ?? section.label}
-          loading={isActive ? 'eager' : 'lazy'}
-          referrerPolicy="no-referrer"
-          tabIndex={-1}
-          style={{
-            width: EMBED_VIEWPORT_WIDTH,
-            height: EMBED_VIEWPORT_HEIGHT,
-            transform: `scale(${scale})`,
-          }}
-          onError={() => setLiveFailed(true)}
-        />
-      ) : null}
-    </>
-  )
+  for (const section of sections) {
+    const url = section.mockupEmbedUrl
+    if (!url || seen.has(url)) continue
+    seen.add(url)
+    scenes.push({
+      url,
+      title: section.mockupTitle ?? section.label,
+      act: section.act === 'waiter' ? 'waiter' : 'customer',
+    })
+  }
+
+  return scenes
 }
 
-/** Showcase mockup — live embed iframes with poster fallback */
+/** Phone mockup — persistent live embeds, switch by opacity only */
 export function AppShowcaseMockup({
   sections,
   activeIndex,
   sectionProgress = 0,
   actBlend = 0,
   inline = false,
-  staticOnly = false,
 }: AppShowcaseMockupProps) {
-  const scrollInnerRef = useRef<HTMLDivElement>(null)
   const screenRef = useRef<HTMLDivElement>(null)
   const [deviceVariant] = useState<DeviceMockupVariant>(() => detectDeviceMockup())
   const scale = usePhoneScale(screenRef)
+  const [readyUrls, setReadyUrls] = useState<Record<string, boolean>>({})
 
   const displayIndex = activeIndex >= 0 ? activeIndex : 0
   const visibleSection = sections[displayIndex]
@@ -123,26 +90,23 @@ export function AppShowcaseMockup({
 
   const lastCustomerIndex = handoffIndex > 0 ? handoffIndex - 1 : 0
   const firstWaiterIndex = handoffIndex >= 0 ? handoffIndex + 1 : sections.length - 1
-
   const isActMorph = handoffIndex >= 0 && displayIndex === handoffIndex
 
-  const liveWindow = useMemo(() => {
-    if (staticOnly) return new Set<number>()
-    const indexes = new Set<number>()
-    indexes.add(displayIndex)
-    return indexes
-  }, [displayIndex, staticOnly])
+  const embedScenes = useMemo(() => collectEmbedScenes(sections), [sections])
 
-  useEffect(() => {
-    for (const section of sections) {
-      const img = new Image()
-      img.src = section.mockupImage
-    }
-  }, [sections])
+  const activeUrl = visibleSection?.mockupEmbedUrl
+  const morphFromUrl = sections[lastCustomerIndex]?.mockupEmbedUrl
+  const morphToUrl = sections[firstWaiterIndex]?.mockupEmbedUrl
 
   const caption =
     visibleSection?.mockupTitle ??
     (act === 'waiter' ? 'اپ پرسنل' : act === 'transition' ? 'مهمان → پرسنل' : 'اپ مهمان')
+
+  const markReady = (url: string) => {
+    setReadyUrls((prev) => (prev[url] ? prev : { ...prev, [url]: true }))
+  }
+
+  const activeReady = Boolean(activeUrl && readyUrls[activeUrl])
 
   return (
     <figure
@@ -167,45 +131,43 @@ export function AppShowcaseMockup({
       </div>
 
       <DeviceFrame variant={deviceVariant} act={act} screenRef={screenRef}>
-        {isActMorph ? (
-          <div className="showcase-mockup__morph">
-            <img
-              src={sections[lastCustomerIndex]?.mockupImage}
-              alt=""
-              draggable={false}
-              decoding="sync"
-              className="showcase-mockup__screen showcase-mockup__morph-from"
-              style={{ opacity: 1 - sectionProgress }}
-            />
-            <img
-              src={sections[firstWaiterIndex]?.mockupImage}
-              alt=""
-              draggable={false}
-              decoding="sync"
-              className="showcase-mockup__screen showcase-mockup__morph-to"
-              style={{ opacity: sectionProgress }}
-            />
-          </div>
-        ) : (
-          <div ref={scrollInnerRef} className="showcase-mockup__scroll-inner">
-            {(() => {
-              const section = sections[displayIndex]
-              if (!section) return null
-              const sectionAct = section.act === 'waiter' ? 'waiter' : 'customer'
-              return (
-                <div key={section.id} className="showcase-mockup__slide is-active">
-                  <MockupScreen
-                    section={section}
-                    sectionAct={sectionAct}
-                    preferLive={liveWindow.has(displayIndex)}
-                    isActive
-                    scale={scale}
-                  />
-                </div>
-              )
-            })()}
-          </div>
-        )}
+        <div
+          className={`showcase-mockup__boot showcase-mockup__boot--${act === 'waiter' ? 'waiter' : 'customer'}${activeReady || isActMorph ? ' is-hidden' : ''}`}
+          aria-hidden="true"
+        />
+
+        <div className="showcase-mockup__layers">
+          {embedScenes.map((scene) => {
+            let opacity = 0
+
+            if (isActMorph) {
+              if (scene.url === morphFromUrl) opacity = 1 - sectionProgress
+              else if (scene.url === morphToUrl) opacity = sectionProgress
+            } else if (scene.url === activeUrl) {
+              opacity = readyUrls[scene.url] ? 1 : 0
+            }
+
+            return (
+              <iframe
+                key={scene.url}
+                className={`showcase-mockup__iframe showcase-mockup__iframe--${scene.act}${readyUrls[scene.url] ? ' is-ready' : ''}`}
+                src={scene.url}
+                title={scene.title}
+                loading="eager"
+                referrerPolicy="no-referrer"
+                tabIndex={-1}
+                style={{
+                  width: EMBED_VIEWPORT_WIDTH,
+                  height: EMBED_VIEWPORT_HEIGHT,
+                  transform: `scale(${scale})`,
+                  opacity,
+                }}
+                onLoad={() => markReady(scene.url)}
+              />
+            )
+          })}
+        </div>
+
         <div className="showcase-mockup__shield" aria-hidden="true" />
       </DeviceFrame>
 

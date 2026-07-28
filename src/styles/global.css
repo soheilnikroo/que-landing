@@ -126,16 +126,20 @@ body {
   scroll-margin-top: 1.5rem;
 }
 
-html[data-journey-complete='true'] .post-journey,
-#faq:target,
-#apps:target,
-#features:target,
-footer.post-journey:target,
-.post-journey:focus-within {
+/* Only after the scroll journey finishes — never overlap the fixed stage mid-scroll */
+html[data-journey-complete='true'] .post-journey {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
   transform: none;
+}
+
+html[data-journey-complete='true'] .post-journey-stack {
+  position: relative;
+  z-index: 50;
+  isolation: isolate;
+  background: var(--color-canvas);
+  min-height: 100vh;
 }
 
 .btn-primary {

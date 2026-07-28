@@ -58,6 +58,25 @@ export function ScrollJourney() {
       }
     }
 
+    const scrollToPostSection = (hash: string) => {
+      const id = hash.replace(/^#/, '')
+      if (!id || !['features', 'apps', 'faq', 'restaurants', 'how', 'start', 'site-footer'].includes(id)) {
+        return
+      }
+      // Finish the journey first so the fixed stage hides, then land on the section
+      const end = Math.max(0, layout.endY - 8)
+      window.scrollTo({ top: end, behavior: 'auto' })
+      requestAnimationFrame(() => {
+        document.documentElement.dataset.journeyComplete = 'true'
+        const el = document.getElementById(id)
+        el?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      })
+    }
+
+    const onHash = () => {
+      if (window.location.hash) scrollToPostSection(window.location.hash)
+    }
+
     const onResize = () => {
       relayout()
       onScroll()
@@ -65,11 +84,14 @@ export function ScrollJourney() {
 
     window.addEventListener('scroll', onScroll, { passive: true })
     window.addEventListener('resize', onResize)
+    window.addEventListener('hashchange', onHash)
     onScroll()
+    onHash()
 
     return () => {
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', onResize)
+      window.removeEventListener('hashchange', onHash)
       delete document.documentElement.dataset.journeyComplete
       delete document.documentElement.dataset.scrollAct
       clearActTheme()
@@ -124,7 +146,6 @@ export function ScrollJourney() {
                 sectionProgress={sectionProgress}
                 actBlend={actBlend}
                 inline
-                staticOnly
               />
             </div>
 

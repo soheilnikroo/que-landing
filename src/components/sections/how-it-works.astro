@@ -1,0 +1,223 @@
+---
+const guestSteps = [
+  {
+    n: '۰۱',
+    title: 'رستوران را پیدا کنید',
+    body: 'جستجو کنید، روی نقشه ببینید، یا QR رستوران را اسکن کنید.',
+  },
+  {
+    n: '۰۲',
+    title: 'به صف بپیوندید',
+    body: 'تعداد نفرات را بگویید و جای خود را در صف ثبت کنید — بدون ایستادن جلوی در.',
+  },
+  {
+    n: '۰۳',
+    title: 'وقتی نوبت شد خبر بگیرید',
+    body: 'جایگاه زنده و اعلان روی گوشی؛ بروید قدم بزنید تا صدایتان کنند.',
+  },
+]
+
+const staffSteps = [
+  {
+    n: '۰۱',
+    title: 'صف را ببینید',
+    body: 'همه مهمان‌های منتظر، اندازه گروه و زمان انتظار در یک لیست.',
+  },
+  {
+    n: '۰۲',
+    title: 'مهمان را صدا کنید',
+    body: 'با یک ضربه نفر بعدی را فراخوانی کنید؛ اعلان برای مهمان می‌رود.',
+  },
+  {
+    n: '۰۳',
+    title: 'میز مناسب را بدهید',
+    body: 'وضعیت میزها را ببینید و برای هر گروه میز آزاد پیشنهاد بگیرید.',
+  },
+]
+---
+
+<section id="how" class="post-journey how section-shell py-24" aria-labelledby="how-title">
+  <div class="how__intro">
+    <p class="how__eyebrow">چطور کار می‌کند</p>
+    <h2 id="how-title" class="how__title">یک صف، دو نگاه ساده</h2>
+    <p class="how__body">
+      مهمان از گوشی نوبت می‌گیرد؛ پرسنل همان صف را از پنل مدیریت می‌کند — بدون کاغذ و بدون شلوغی جلوی در.
+    </p>
+  </div>
+
+  <div class="how__panels">
+    <article class="how__panel how__panel--guest">
+      <header class="how__panel-head">
+        <span class="how__role">برای مهمان</span>
+        <h3>از کشف تا اعلان</h3>
+      </header>
+      <ol class="how__steps">
+        {
+          guestSteps.map((step) => (
+            <li class="how__step">
+              <span class="how__num" aria-hidden="true">
+                {step.n}
+              </span>
+              <div>
+                <h4>{step.title}</h4>
+                <p>{step.body}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </article>
+
+    <article class="how__panel how__panel--staff">
+      <header class="how__panel-head">
+        <span class="how__role how__role--staff">برای پرسنل</span>
+        <h3>از لیست تا میز</h3>
+      </header>
+      <ol class="how__steps">
+        {
+          staffSteps.map((step) => (
+            <li class="how__step">
+              <span class="how__num how__num--staff" aria-hidden="true">
+                {step.n}
+              </span>
+              <div>
+                <h4>{step.title}</h4>
+                <p>{step.body}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </article>
+  </div>
+</section>
+
+<style>
+  .how__intro {
+    max-width: 38rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .how__eyebrow {
+    margin: 0;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--color-accent);
+  }
+
+  .how__title {
+    margin: 0.75rem 0 0;
+    font-size: clamp(1.85rem, 3.2vw, 2.6rem);
+    font-weight: 800;
+    line-height: 1.12;
+    color: var(--color-primary);
+  }
+
+  .how__body {
+    margin: 1rem 0 0;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--color-muted);
+  }
+
+  .how__panels {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  @media (min-width: 900px) {
+    .how__panels {
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+  }
+
+  .how__panel {
+    position: relative;
+    overflow: hidden;
+    padding: 1.75rem 1.5rem 1.5rem;
+    border-radius: 1.75rem;
+    border: 1px solid var(--color-border);
+  }
+
+  .how__panel--guest {
+    background:
+      radial-gradient(120% 80% at 100% 0%, color-mix(in srgb, #40916c 16%, transparent), transparent 55%),
+      linear-gradient(165deg, #fff 0%, #f3faf6 100%);
+  }
+
+  .how__panel--staff {
+    background:
+      radial-gradient(120% 80% at 0% 0%, color-mix(in srgb, #b08d57 18%, transparent), transparent 55%),
+      linear-gradient(165deg, #fff 0%, #f7f3ec 100%);
+  }
+
+  .how__panel-head {
+    margin-bottom: 1.5rem;
+  }
+
+  .how__role {
+    display: inline-flex;
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #1b4332;
+    background: color-mix(in srgb, #40916c 14%, #fff);
+    border: 1px solid color-mix(in srgb, #40916c 28%, transparent);
+  }
+
+  .how__role--staff {
+    color: #2e3440;
+    background: color-mix(in srgb, #b08d57 16%, #fff);
+    border-color: color-mix(in srgb, #b08d57 32%, transparent);
+  }
+
+  .how__panel-head h3 {
+    margin: 0.85rem 0 0;
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: var(--color-primary);
+  }
+
+  .how__steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1.15rem;
+  }
+
+  .how__step {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.9rem;
+    align-items: start;
+  }
+
+  .how__num {
+    font-family: ui-monospace, Menlo, monospace;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: #40916c;
+    padding-top: 0.15rem;
+  }
+
+  .how__num--staff {
+    color: #b08d57;
+  }
+
+  .how__step h4 {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 750;
+    color: var(--color-primary);
+  }
+
+  .how__step p {
+    margin: 0.35rem 0 0;
+    line-height: 1.65;
+    color: var(--color-muted);
+  }
+</style>
