@@ -7,6 +7,7 @@
   pointer-events: none;
   opacity: 1;
   visibility: visible;
+  background: var(--color-canvas);
   transition: opacity 0.45s ease, visibility 0.45s ease;
   --act-blend: 0;
 }
@@ -38,17 +39,36 @@
   z-index: -1;
 }
 
+/* `isolation: isolate` gives this its own stacking context so the dark-mode
+   scrim below (z-index: 5) reliably paints above every image layer regardless
+   of paint order. */
 .journey-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
   overflow: hidden;
+  isolation: isolate;
   background: var(--color-canvas);
+}
+
+/* The scene art (scene-01.svg etc.) is drawn once, in fixed light colors — it can't
+   re-theme itself, so in dark mode we dim/desaturate it heavily and lay a near-opaque
+   canvas-tinted scrim on top. Without this the illustration stays bright while the
+   chrome around it goes dark, which reads as "theme half-applied" instead of an
+   actual dark mode. */
+html[data-theme='dark'] .journey-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  background: color-mix(in srgb, var(--color-canvas) 88%, transparent);
 }
 
 .journey-bg__layer {
   position: absolute;
   inset: 0;
+  z-index: 1;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -56,7 +76,12 @@
   transform: scale(1.04);
   transition:
     opacity 0.65s ease,
-    transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+    transform 1.1s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.5s ease;
+}
+
+html[data-theme='dark'] .journey-bg__layer {
+  filter: brightness(0.35) saturate(0.6) contrast(1.1);
 }
 
 .journey-bg__layer.is-active {
@@ -195,8 +220,8 @@
   font-weight: 600;
   padding: 0.4rem 0.8rem;
   border-radius: 999px;
-  color: color-mix(in srgb, var(--color-accent) 75%, #000);
-  background: color-mix(in srgb, var(--color-accent) 12%, #fff);
+  color: color-mix(in srgb, var(--color-accent) 75%, var(--color-foreground));
+  background: color-mix(in srgb, var(--color-accent) 12%, var(--color-surface));
   border: 1px solid color-mix(in srgb, var(--color-accent) 28%, transparent);
 }
 
@@ -225,7 +250,7 @@
 
 .journey-btn--primary {
   background: var(--color-primary);
-  color: #fff;
+  color: var(--color-primary-foreground);
 }
 
 .journey-btn--ghost {
@@ -295,8 +320,8 @@
 }
 
 .journey-stage[data-act='waiter'] .journey-copy__tags li {
-  color: color-mix(in srgb, var(--color-accent) 80%, #000);
-  background: color-mix(in srgb, var(--color-accent) 14%, #fff);
+  color: color-mix(in srgb, var(--color-accent) 80%, var(--color-foreground));
+  background: color-mix(in srgb, var(--color-accent) 14%, var(--color-surface));
   border-color: color-mix(in srgb, var(--color-accent) 32%, transparent);
 }
 
@@ -337,7 +362,7 @@
   font-weight: 600;
   white-space: nowrap;
   color: var(--color-primary);
-  background: rgb(255 255 255 / 88%);
+  background: color-mix(in srgb, var(--color-surface) 88%, transparent);
   border: 1px solid color-mix(in srgb, var(--color-accent) 14%, transparent);
   opacity: 0;
   pointer-events: none;

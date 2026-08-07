@@ -1,5 +1,9 @@
-/** Brand logo from que-app (`public/favicon.svg`) */
-export const BRAND_LOGO_SRC = '/assets/logo.svg'
+/**
+ * Brand logo — que-app's actual app icon (the "Q" mark), copied straight from
+ * `apps/customer/public/web-app-manifest-192x192.png` so the landing shows the
+ * same identity as the real app instead of a one-off illustration.
+ */
+export const BRAND_LOGO_SRC = '/logo-que.png'
 
 export const SITE_NAME = 'صف'
 export const SITE_TAGLINE = 'مدیریت صف رستوران'

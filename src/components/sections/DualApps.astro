@@ -128,7 +128,7 @@ const apps = [
     padding: 1.35rem 1.5rem;
     border-radius: 1.35rem;
     border: 1px solid var(--color-border);
-    background: color-mix(in srgb, var(--color-secondary) 55%, #fff);
+    background: color-mix(in srgb, var(--color-secondary) 55%, var(--color-surface));
   }
 
   .get-started__channel h3 {
@@ -146,7 +146,11 @@ const apps = [
 
   .get-started__channel--android {
     background:
-      linear-gradient(145deg, color-mix(in srgb, var(--color-accent) 12%, #fff), #fff 60%);
+      linear-gradient(
+        145deg,
+        color-mix(in srgb, var(--color-accent) 12%, var(--color-surface)),
+        var(--color-surface) 60%
+      );
   }
 
   .get-started__apps {
@@ -167,12 +171,16 @@ const apps = [
     padding: 1.75rem;
     border-radius: 1.75rem;
     border: 1px solid var(--color-border);
-    background: #fff;
-    box-shadow: 0 16px 40px rgb(20 32 26 / 6%);
+    background: var(--color-surface);
+    box-shadow: 0 16px 40px rgb(var(--color-shadow-ambient) / 6%);
   }
 
   .get-started__card--waiter {
-    background: linear-gradient(180deg, #fff 0%, color-mix(in srgb, #f2ece4 70%, #fff) 100%);
+    background: linear-gradient(
+      180deg,
+      var(--color-surface) 0%,
+      color-mix(in srgb, var(--color-accent) 12%, var(--color-surface)) 100%
+    );
   }
 
   .get-started__pill {
@@ -183,7 +191,7 @@ const apps = [
     font-size: 0.75rem;
     font-weight: 700;
     color: var(--color-primary);
-    background: color-mix(in srgb, var(--color-accent) 14%, #fff);
+    background: color-mix(in srgb, var(--color-accent) 14%, var(--color-surface));
     border: 1px solid color-mix(in srgb, var(--color-accent) 28%, transparent);
   }
 
@@ -204,7 +212,7 @@ const apps = [
     margin: 0;
     padding: 0.9rem 1rem;
     border-radius: 1rem;
-    background: color-mix(in srgb, var(--color-secondary) 70%, #fff);
+    background: color-mix(in srgb, var(--color-secondary) 70%, var(--color-surface));
   }
 
   .get-started__meta dt {

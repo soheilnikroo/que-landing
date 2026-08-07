@@ -1,4 +1,4 @@
-import { APP_ORIGIN, WAITER_ORIGIN, embedShowcaseUrls } from '@/content/app-urls'
+import { APP_ORIGIN, showcaseSceneUrls, WAITER_ORIGIN } from '@/content/app-urls'
 
 import customerBusy from '@/assets/mockups/customer-busy.svg?url'
 import customerDiscover from '@/assets/mockups/customer-discover.svg?url'
@@ -37,7 +37,7 @@ export type ScrollSection = {
   mockupTitle?: string
 }
 
-const embed = embedShowcaseUrls
+const showcase = showcaseSceneUrls
 
 /** اپ مهمان — همه قابلیت‌ها به زبان ساده */
 const customerSections: ScrollSection[] = [
@@ -53,7 +53,7 @@ const customerSections: ScrollSection[] = [
     body: 'با صف از گوشی خود نوبت بگیرید، جای خود را در صف ببینید، و وقتی نوبتتان شد خبر بگیرید.',
     tags: ['رایگان', 'بدون نصب', 'روی گوشی'],
     mockupImage: customerHome,
-    mockupEmbedUrl: embed.customerDiscover,
+    mockupEmbedUrl: showcase.customerDiscover,
     mockupTitle: 'اپ مهمان',
   },
   {
@@ -68,7 +68,7 @@ const customerSections: ScrollSection[] = [
     body: 'نام رستوران را جستجو کنید یا از روی نقشه انتخاب کنید. قبل از رفتن، ببینید کجا شلوغ است.',
     tags: ['جستجو', 'نقشه', 'QR'],
     mockupImage: customerDiscover,
-    mockupEmbedUrl: embed.customerDiscover,
+    mockupEmbedUrl: showcase.customerDiscover,
     mockupTitle: 'جستجوی رستوران',
   },
   {
@@ -83,7 +83,7 @@ const customerSections: ScrollSection[] = [
     body: 'چند نفر در صف هستند و تقریباً چقدر باید صبر کنید — بعد راحت تصمیم بگیرید.',
     tags: ['شفاف', 'بدون تماس', 'سریع'],
     mockupImage: customerBusy,
-    mockupEmbedUrl: embed.customerDecide,
+    mockupEmbedUrl: showcase.customerDecide,
     mockupTitle: 'وضعیت صف',
   },
   {
@@ -98,7 +98,7 @@ const customerSections: ScrollSection[] = [
     body: 'تعداد نفرات را انتخاب کنید و تأیید کنید. جای شما در صف ثبت می‌شود.',
     tags: ['ساده', 'چند کلیک', 'بدون تماس'],
     mockupImage: customerJoin,
-    mockupEmbedUrl: embed.customerJoin,
+    mockupEmbedUrl: showcase.customerJoin,
     mockupTitle: 'پیوستن به صف',
   },
   {
@@ -113,7 +113,7 @@ const customerSections: ScrollSection[] = [
     body: 'شماره جای شما در صف و زمان تقریبی انتظار همیشه روی گوشی شماست.',
     tags: ['لحظه‌ای', 'شماره صف', 'زمان انتظار'],
     mockupImage: customerWaiting,
-    mockupEmbedUrl: embed.customerWaiting,
+    mockupEmbedUrl: showcase.customerWaiting,
     mockupTitle: 'جای شما در صف',
   },
   {
@@ -128,7 +128,7 @@ const customerSections: ScrollSection[] = [
     body: 'وقتی نوبت شما نزدیک شد، روی گوشی اعلان می‌گیرید. لازم نیست جلوی در بمانید.',
     tags: ['اعلان', 'آزاد باشید', 'راحت'],
     mockupImage: customerWaiting,
-    mockupEmbedUrl: embed.customerWaiting,
+    mockupEmbedUrl: showcase.customerWaiting,
     mockupTitle: 'اعلان نوبت',
   },
 ]
@@ -160,7 +160,7 @@ const waiterSections: ScrollSection[] = [
     body: 'لیست کامل صف را ببینید: چند نفره، چقدر منتظر مانده‌اند، و برای کدام میز مناسب‌اند.',
     tags: ['لیست صف', 'واضح', 'سریع'],
     mockupImage: waiterQueue,
-    mockupEmbedUrl: embed.waiterManage,
+    mockupEmbedUrl: showcase.waiterManage,
     mockupTitle: 'لیست صف',
   },
   {
@@ -175,7 +175,7 @@ const waiterSections: ScrollSection[] = [
     body: 'با یک دکمه نفر اول صف را فراخوانی کنید. مهمان روی گوشی خود اعلان می‌گیرد.',
     tags: ['فراخوانی', 'یک کلیک', 'بدون خطا'],
     mockupImage: waiterCall,
-    mockupEmbedUrl: embed.waiterManage,
+    mockupEmbedUrl: showcase.waiterManage,
     mockupTitle: 'فراخوانی مهمان',
   },
   {
@@ -190,7 +190,7 @@ const waiterSections: ScrollSection[] = [
     body: 'نقشه میزها را ببینید: خالی، پر، یا در حال تمیز شدن. برای هر گروه میز مناسب پیشنهاد می‌شود.',
     tags: ['میزها', 'پیشنهاد میز', 'شلوغی'],
     mockupImage: waiterDesks,
-    mockupEmbedUrl: embed.waiterDesks,
+    mockupEmbedUrl: showcase.waiterDesks,
     mockupTitle: 'وضعیت میزها',
   },
   {
@@ -205,7 +205,7 @@ const waiterSections: ScrollSection[] = [
     body: 'اپ مهمان برای مشتری‌ها و اپ پرسنل برای تیم شما. روی گوشی اندروید هم نصب می‌شود.',
     tags: ['رایگان', 'اندروید', 'آسان'],
     mockupImage: waiterDesks,
-    mockupEmbedUrl: embed.waiterDesks,
+    mockupEmbedUrl: showcase.waiterDesks,
     mockupTitle: 'شروع کنید',
     cta: {
       primary: { label: 'شروع برای مهمان‌ها', href: APP_ORIGIN + '/' },

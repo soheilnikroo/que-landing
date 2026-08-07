@@ -98,6 +98,25 @@ export function AppShowcaseMockup({
   const morphFromUrl = sections[lastCustomerIndex]?.mockupEmbedUrl
   const morphToUrl = sections[firstWaiterIndex]?.mockupEmbedUrl
 
+  // Boot the real app lazily, scene by scene, instead of firing every embed's
+  // iframe at once — the static poster below covers the gap so first paint stays
+  // instant while only the scene actually in view pays the load cost.
+  const [mountedUrls, setMountedUrls] = useState<Set<string>>(() => new Set())
+
+  useEffect(() => {
+    setMountedUrls((prev) => {
+      const next = new Set(prev)
+      let changed = false
+      for (const url of [activeUrl, morphFromUrl, morphToUrl]) {
+        if (url && !next.has(url)) {
+          next.add(url)
+          changed = true
+        }
+      }
+      return changed ? next : prev
+    })
+  }, [activeUrl, morphFromUrl, morphToUrl])
+
   const caption =
     visibleSection?.mockupTitle ??
     (act === 'waiter' ? 'اپ پرسنل' : act === 'transition' ? 'مهمان → پرسنل' : 'اپ مهمان')
@@ -137,35 +156,37 @@ export function AppShowcaseMockup({
         />
 
         <div className="showcase-mockup__layers">
-          {embedScenes.map((scene) => {
-            let opacity = 0
+          {embedScenes
+            .filter((scene) => mountedUrls.has(scene.url))
+            .map((scene) => {
+              let opacity = 0
 
-            if (isActMorph) {
-              if (scene.url === morphFromUrl) opacity = 1 - sectionProgress
-              else if (scene.url === morphToUrl) opacity = sectionProgress
-            } else if (scene.url === activeUrl) {
-              opacity = readyUrls[scene.url] ? 1 : 0
-            }
+              if (isActMorph) {
+                if (scene.url === morphFromUrl) opacity = 1 - sectionProgress
+                else if (scene.url === morphToUrl) opacity = sectionProgress
+              } else if (scene.url === activeUrl) {
+                opacity = readyUrls[scene.url] ? 1 : 0
+              }
 
-            return (
-              <iframe
-                key={scene.url}
-                className={`showcase-mockup__iframe showcase-mockup__iframe--${scene.act}${readyUrls[scene.url] ? ' is-ready' : ''}`}
-                src={scene.url}
-                title={scene.title}
-                loading="eager"
-                referrerPolicy="no-referrer"
-                tabIndex={-1}
-                style={{
-                  width: EMBED_VIEWPORT_WIDTH,
-                  height: EMBED_VIEWPORT_HEIGHT,
-                  transform: `scale(${scale})`,
-                  opacity,
-                }}
-                onLoad={() => markReady(scene.url)}
-              />
-            )
-          })}
+              return (
+                <iframe
+                  key={scene.url}
+                  className={`showcase-mockup__iframe showcase-mockup__iframe--${scene.act}${readyUrls[scene.url] ? ' is-ready' : ''}`}
+                  src={scene.url}
+                  title={scene.title}
+                  loading="eager"
+                  referrerPolicy="no-referrer"
+                  tabIndex={-1}
+                  style={{
+                    width: EMBED_VIEWPORT_WIDTH,
+                    height: EMBED_VIEWPORT_HEIGHT,
+                    transform: `scale(${scale})`,
+                    opacity,
+                  }}
+                  onLoad={() => markReady(scene.url)}
+                />
+              )
+            })}
         </div>
 
         <div className="showcase-mockup__shield" aria-hidden="true" />

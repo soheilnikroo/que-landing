@@ -17,6 +17,10 @@ function pad(n: number) {
   return String(n).padStart(2, '0')
 }
 
+function prefersReducedMotion(): boolean {
+  return typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+}
+
 export function ScrollJourney() {
   const [activeIndex, setActiveIndex] = useState(0)
   const [sectionProgress, setSectionProgress] = useState(0)
@@ -64,12 +68,13 @@ export function ScrollJourney() {
         return
       }
       // Finish the journey first so the fixed stage hides, then land on the section
+      const smooth = prefersReducedMotion() ? 'auto' : 'smooth'
       const end = Math.max(0, layout.endY - 8)
       window.scrollTo({ top: end, behavior: 'auto' })
       requestAnimationFrame(() => {
         document.documentElement.dataset.journeyComplete = 'true'
         const el = document.getElementById(id)
-        el?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        el?.scrollIntoView({ behavior: smooth, block: 'start' })
       })
     }
 
@@ -102,7 +107,7 @@ export function ScrollJourney() {
     const segment = layout.segments[index]
     if (!segment) return
     const target = segment.start + segment.width * 0.45
-    window.scrollTo({ top: target, behavior: 'smooth' })
+    window.scrollTo({ top: target, behavior: prefersReducedMotion() ? 'auto' : 'smooth' })
   }
 
   return (

@@ -4,8 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro check && astro build",
+    "dev": "pnpm build:app-showcase && astro dev",
+    "build": "pnpm build:app-showcase && astro check && astro build",
+    "build:app-showcase": "node scripts/build-app-showcase.mjs",
     "preview": "astro preview",
     "lint": "oxlint",
     "check": "astro check"

@@ -25,7 +25,11 @@ const hero = scrollSections[0]
 
   <div class="journey-placeholder__body">
     <p class="journey-placeholder__eyebrow">{hero.eyebrow}</p>
-    <h1 class="journey-placeholder__title">{hero.title}</h1>
+    {/* Not an <h1>: the page's single canonical h1 lives in SeoFallback (always
+       present, incl. no-JS). This is a transient pre-hydration loading state that
+       ScrollJourney's own <h2> replaces once mounted — a second <h1> here would
+       duplicate it in the server-rendered HTML. */}
+    <p class="journey-placeholder__title">{hero.title}</p>
     <p class="journey-placeholder__text">{hero.body}</p>
     <p class="journey-placeholder__hint" role="status">در حال بارگذاری تجربه اسکرول…</p>
   </div>
@@ -77,7 +81,7 @@ const hero = scrollSections[0]
     padding: 0.55rem 1rem;
     border-radius: 999px;
     background: var(--color-primary);
-    color: #fff;
+    color: var(--color-primary-foreground);
     font-weight: 700;
     font-size: 0.85rem;
     text-decoration: none;

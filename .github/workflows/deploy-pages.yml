@@ -18,7 +18,19 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Check out landing
+        uses: actions/checkout@v4
+
+      # The phone-mockup showcase iframes a static build of que-app (see
+      # scripts/build-app-showcase.mjs) — check it out alongside the landing
+      # so that script has something to build. Requires que-app to be
+      # readable by this workflow (same owner, or a repo secret token if it's
+      # ever moved to a different account).
+      - name: Check out que-app
+        uses: actions/checkout@v4
+        with:
+          repository: soheilnikroo/q
+          path: que-app-checkout
 
       - uses: pnpm/action-setup@v4
         with:
@@ -29,8 +41,18 @@ jobs:
           node-version: '22'
           cache: pnpm
 
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm build
+      - name: Install landing dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install que-app dependencies
+        run: pnpm install --frozen-lockfile
+        working-directory: que-app-checkout
+
+      - name: Build (includes static app-showcase)
+        run: pnpm build
+        env:
+          QUE_APP_DIR: ${{ github.workspace }}/que-app-checkout
+          REQUIRE_APP_SHOWCASE: 'true'
 
       - uses: actions/configure-pages@v5
         id: pages

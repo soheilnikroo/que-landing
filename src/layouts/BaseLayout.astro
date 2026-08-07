@@ -1,6 +1,7 @@
 ---
 import '@/styles/global.css'
 import Meta from '@/components/seo/Meta.astro'
+import { APP_ORIGIN, WAITER_ORIGIN } from '@/content/app-urls'
 
 interface Props {
   title?: string
@@ -8,14 +9,60 @@ interface Props {
 }
 
 const { title, description } = Astro.props
+
+// The phone-mockup showcase iframes a static, same-origin copy of que-app (see
+// scripts/build-app-showcase.mjs) — no cross-origin connection needed there.
+// APP_ORIGIN/WAITER_ORIGIN are only the "start the app" links now, so warm
+// those up instead, for whenever the visitor actually clicks through.
+const ctaOrigins = [...new Set([APP_ORIGIN, WAITER_ORIGIN])]
 ---
 
 <!doctype html>
 <html lang="fa-IR" dir="rtl" data-scroll-act="customer">
   <head>
+    <script is:inline>
+      // Runs before first paint to avoid a light/dark flash.
+      // Explicit user choice (localStorage) wins; otherwise follow the device.
+      ;(function () {
+        try {
+          var stored = localStorage.getItem('q-theme')
+          var theme =
+            stored === 'light' || stored === 'dark'
+              ? stored
+              : window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+                ? 'dark'
+                : 'light'
+          document.documentElement.setAttribute('data-theme', theme)
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'light')
+        }
+
+        try {
+          if (!localStorage.getItem('q-theme') && window.matchMedia) {
+            var mq = window.matchMedia('(prefers-color-scheme: dark)')
+            var onChange = function (event) {
+              if (!localStorage.getItem('q-theme')) {
+                document.documentElement.setAttribute('data-theme', event.matches ? 'dark' : 'light')
+              }
+            }
+            mq.addEventListener ? mq.addEventListener('change', onChange) : mq.addListener(onChange)
+          }
+        } catch (e) {}
+      })()
+    </script>
     <Meta />
     {title ? <title>{title}</title> : null}
     {description ? <meta name="description" content={description} /> : null}
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f5f8f6" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#101712" />
+    {
+      ctaOrigins.map((origin) => (
+        <>
+          <link rel="preconnect" href={origin} crossorigin />
+          <link rel="dns-prefetch" href={origin} />
+        </>
+      ))
+    }
   </head>
   <body>
     <a class="skip-link" href="#main-content">رفتن به محتوای اصلی</a>

@@ -51,7 +51,7 @@
   gap: 0.35rem;
   padding: 0.35rem;
   border-radius: 999px;
-  background: rgb(255 255 255 / 72%);
+  background: color-mix(in srgb, var(--color-surface) 72%, transparent);
   border: 1px solid color-mix(in srgb, var(--color-primary) 12%, transparent);
   backdrop-filter: blur(8px);
 }
@@ -104,16 +104,53 @@
 
 .site-btn--primary {
   background: var(--color-primary);
-  color: #fff;
+  color: var(--color-primary-foreground);
 }
 
 .site-btn--primary:hover {
-  background: #123528;
+  background: color-mix(in srgb, var(--color-primary) 85%, black);
 }
 
 .site-btn--ghost {
   border: 1.5px solid color-mix(in srgb, var(--color-primary) 22%, transparent);
   color: var(--color-primary);
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.35rem;
+  height: 2.35rem;
+  flex-shrink: 0;
+  border-radius: 999px;
+  border: 1.5px solid color-mix(in srgb, var(--color-primary) 22%, transparent);
+  background: color-mix(in srgb, var(--color-surface) 60%, transparent);
+  color: var(--color-primary);
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.theme-toggle:hover {
+  transform: translateY(-1px);
+  background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+}
+
+.theme-toggle__icon {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.theme-toggle__icon--moon {
+  display: none;
+}
+
+html[data-theme='dark'] .theme-toggle__icon--sun {
+  display: none;
+}
+
+html[data-theme='dark'] .theme-toggle__icon--moon {
+  display: block;
 }
 
 @media (max-width: 860px) {

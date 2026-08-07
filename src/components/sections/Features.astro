@@ -1,22 +1,106 @@
 ---
-const features = [
+type Feature = {
+  title: string
+  body: string
+  icon: string
+}
+
+const guestFeatures: Feature[] = [
   {
     title: 'کشف رستوران',
-    body: 'جستجو، موقعیت و وضعیت شلوغی قبل از پیوستن به صف.',
+    body: 'جستجو کنید، روی نقشه ببینید، یا QR رستوران را اسکن کنید — همراه با وضعیت شلوغی همان لحظه.',
+    icon: 'search',
   },
   {
     title: 'صف زنده',
-    body: 'موقعیت، تخمین زمان و اعلان لحظه‌ای برای مهمان.',
+    body: 'موقعیت دقیق در صف، تخمین زمان انتظار، و اعلان لحظه‌ای وقتی نوبتتان نزدیک می‌شود.',
+    icon: 'pulse',
   },
   {
-    title: 'پنل پرسنل',
-    body: 'مدیریت صف، فراخوانی و پیشنهاد میز در یک داشبورد.',
+    title: 'رزرو میز',
+    body: 'از قبل میز رزرو کنید و مستقیم سر وقت بروید — بدون ایستادن در صف.',
+    icon: 'calendar',
   },
   {
-    title: 'PWA + TWA اندروید',
-    body: 'از مرورگر، افزودن به صفحهٔ اصلی، یا نصب اپ اندروید بدون نوار مرورگر.',
+    title: 'سفارش از منو',
+    body: 'منوی رستوران را ببینید، سفارش بدهید و سبد خرید را مستقیم از گوشی مدیریت کنید.',
+    icon: 'menu',
+  },
+  {
+    title: 'نشست حضوری با QR میز',
+    body: 'با اسکن QR روی میز، نشست شما ثبت می‌شود و مسیر گارسون تا میزتان روشن است.',
+    icon: 'qr',
+  },
+  {
+    title: 'تاریخچه بازدید',
+    body: 'بازدیدها و سفارش‌های قبلی خود را در یک‌جا ببینید و دوباره سفارش بدهید.',
+    icon: 'history',
   },
 ]
+
+const staffFeatures: Feature[] = [
+  {
+    title: 'مدیریت صف',
+    body: 'همه مهمان‌های منتظر، اندازه گروه و زمان انتظار در یک لیست زنده — فراخوانی با یک ضربه.',
+    icon: 'list',
+  },
+  {
+    title: 'مدیریت میزها',
+    body: 'نقشه سالن را ببینید: خالی، پر یا در حال تمیز شدن، با پیشنهاد میز مناسب برای هر گروه.',
+    icon: 'grid',
+  },
+  {
+    title: 'رزروهای رستوران',
+    body: 'رزروهای پیش‌رو را ببینید و مدیریت کنید تا میزها همیشه سر وقت آماده باشند.',
+    icon: 'calendar',
+  },
+  {
+    title: 'مدیریت منو',
+    body: 'آیتم‌های منو، قیمت و موجودی را به‌روز نگه دارید — همان لحظه برای مهمان‌ها نمایش داده می‌شود.',
+    icon: 'chef',
+  },
+  {
+    title: 'برندینگ رستوران',
+    body: 'نام، لوگو و رنگ رستوران خودتان را تنظیم کنید تا اپ مهمان با هویت شما باز شود.',
+    icon: 'palette',
+  },
+  {
+    title: 'کار بدون اینترنت',
+    body: 'در قطعی اینترنت هم صف و میزها کار می‌کنند؛ به محض وصل شدن، همه‌چیز همگام می‌شود.',
+    icon: 'offline',
+  },
+]
+
+const platformNotes = [
+  { title: 'وب و PWA', body: 'مستقیم در مرورگر، یا افزوده‌شده به صفحه اصلی گوشی.' },
+  { title: 'اندروید (TWA)', body: 'نصب کامل روی اندروید، برای مهمان و پرسنل جدا.' },
+  { title: 'دو زبانه', body: 'فارسی و انگلیسی، با پشتیبانی کامل راست‌به‌چپ.' },
+]
+
+const icons: Record<string, string> = {
+  search:
+    '<circle cx="11" cy="11" r="6.5"/><path d="m20 20-3.7-3.7"/>',
+  pulse:
+    '<path d="M3 12h4l2-6 4 12 2-6h6"/>',
+  calendar:
+    '<rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/>',
+  menu:
+    '<path d="M5 4h11l3 4-3 4H5z"/><path d="M5 12v8M5 16h6"/>',
+  qr:
+    '<rect x="3.5" y="3.5" width="6.5" height="6.5" rx="1"/><rect x="14" y="3.5" width="6.5" height="6.5" rx="1"/><rect x="3.5" y="14" width="6.5" height="6.5" rx="1"/><path d="M14 14h3v3h-3zM20.5 14v3M14 20.5h3M20.5 20.5h.01"/>',
+  history:
+    '<path d="M3.5 12a8.5 8.5 0 1 0 2.7-6.2"/><path d="M3.5 4v4.5H8"/><path d="M12 8v4.3l3 2"/>',
+  list:
+    '<path d="M8 6h12M8 12h12M8 18h12"/><circle cx="4" cy="6" r="1.3"/><circle cx="4" cy="12" r="1.3"/><circle cx="4" cy="18" r="1.3"/>',
+  grid:
+    '<rect x="3.5" y="3.5" width="7.5" height="7.5" rx="1.5"/><rect x="13" y="3.5" width="7.5" height="7.5" rx="1.5"/><rect x="3.5" y="13" width="7.5" height="7.5" rx="1.5"/><rect x="13" y="13" width="7.5" height="7.5" rx="1.5"/>',
+  chef:
+    '<path d="M7 21h10M9 21v-6.3M15 21v-6.3"/><path d="M6 10.5A3 3 0 0 1 8.4 6a3.5 3.5 0 0 1 6.9-1 3 3 0 0 1 3.7 3.4A3 3 0 0 1 18 14.7H7A3 3 0 0 1 6 10.5Z"/>',
+  palette:
+    '<path d="M12 3.5a8.5 8.5 0 1 0 0 17c1 0 1.6-.8 1.2-1.7-.3-.7.2-1.5 1-1.5H16a4 4 0 0 0 4-4c0-5.4-3.6-9.8-8-9.8Z"/><circle cx="8" cy="12" r="1"/><circle cx="9.5" cy="8" r="1"/><circle cx="14" cy="7.5" r="1"/><circle cx="16.5" cy="11" r="1"/>',
+  offline:
+    '<path d="M4 9.5a12 12 0 0 1 6.3-3.3M13.8 6.2A12 12 0 0 1 20 9.5M7 13a7.5 7.5 0 0 1 3.6-1.9M13.4 11.1A7.5 7.5 0 0 1 17 13M10.2 16.4a3.3 3.3 0 0 1 3.6 0"/><path d="M12 19.5h.01"/><path d="M3 3l18 18"/>',
+}
 ---
 
 <section id="features" class="post-journey section-shell py-24" aria-labelledby="features-title">
@@ -24,16 +108,51 @@ const features = [
     <p class="features-intro__eyebrow">امکانات</p>
     <h2 id="features-title" class="features-intro__title">همه‌چیز برای رستوران شلوغ</h2>
     <p class="features-intro__body">
-      از پیدا کردن رستوران تا مدیریت میز — یک جریان ساده برای مهمان و پرسنل.
+      از پیدا کردن رستوران تا مدیریت میز — یک جریان ساده برای مهمان و برای پرسنل، با همه امکاناتی که هر طرف لازم دارد.
     </p>
   </div>
-  <div class="features-grid">
+
+  <div class="features-group">
+    <div class="features-group__head">
+      <span class="features-group__badge features-group__badge--guest">برای مهمان</span>
+    </div>
+    <div class="features-grid">
+      {
+        guestFeatures.map((feature) => (
+          <article class="feature-card">
+            <span class="feature-card__icon" set:html={`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${icons[feature.icon]}</svg>`} />
+            <h3>{feature.title}</h3>
+            <p>{feature.body}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="features-group">
+    <div class="features-group__head">
+      <span class="features-group__badge features-group__badge--staff">برای پرسنل</span>
+    </div>
+    <div class="features-grid">
+      {
+        staffFeatures.map((feature) => (
+          <article class="feature-card feature-card--staff">
+            <span class="feature-card__icon feature-card__icon--staff" set:html={`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${icons[feature.icon]}</svg>`} />
+            <h3>{feature.title}</h3>
+            <p>{feature.body}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="features-platform">
     {
-      features.map((feature) => (
-        <article class="feature-card">
-          <h3>{feature.title}</h3>
-          <p>{feature.body}</p>
-        </article>
+      platformNotes.map((note) => (
+        <div class="features-platform__item">
+          <strong>{note.title}</strong>
+          <span>{note.body}</span>
+        </div>
       ))
     }
   </div>
@@ -42,7 +161,7 @@ const features = [
 <style>
   .features-intro {
     max-width: 36rem;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
   }
 
   .features-intro__eyebrow {
@@ -65,6 +184,40 @@ const features = [
     color: var(--color-muted);
   }
 
+  .features-group {
+    margin-top: 2.75rem;
+  }
+
+  .features-group:first-of-type {
+    margin-top: 0;
+  }
+
+  .features-group__head {
+    margin-bottom: 1.1rem;
+  }
+
+  .features-group__badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    background: color-mix(in srgb, var(--color-accent) 14%, var(--color-surface));
+    border: 1px solid color-mix(in srgb, var(--color-accent) 28%, transparent);
+  }
+
+  .features-group__badge--staff {
+    color: #2e3440;
+    background: color-mix(in srgb, #b08d57 16%, var(--color-surface));
+    border-color: color-mix(in srgb, #b08d57 32%, transparent);
+  }
+
+  html[data-theme='dark'] .features-group__badge--staff {
+    color: #e3c893;
+  }
+
   .features-grid {
     display: grid;
     gap: 1rem;
@@ -72,7 +225,7 @@ const features = [
 
   @media (min-width: 720px) {
     .features-grid {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
     }
   }
 
@@ -80,20 +233,80 @@ const features = [
     padding: 1.5rem;
     border-radius: 1.5rem;
     border: 1px solid var(--color-border);
-    background: #fff;
-    box-shadow: 0 10px 28px rgb(20 32 26 / 5%);
+    background: var(--color-surface);
+    box-shadow: 0 10px 28px rgb(var(--color-shadow-ambient) / 5%);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 36px rgb(var(--color-shadow-ambient) / 8%);
+  }
+
+  .feature-card__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.9rem;
+    color: var(--color-accent);
+    background: color-mix(in srgb, var(--color-accent) 14%, transparent);
+  }
+
+  .feature-card__icon--staff {
+    color: #b08d57;
+    background: color-mix(in srgb, #b08d57 16%, transparent);
+  }
+
+  .feature-card__icon :global(svg) {
+    width: 1.3rem;
+    height: 1.3rem;
   }
 
   .feature-card h3 {
-    margin: 0;
-    font-size: 1.2rem;
+    margin: 1rem 0 0;
+    font-size: 1.1rem;
     font-weight: 800;
     color: var(--color-primary);
   }
 
   .feature-card p {
-    margin: 0.7rem 0 0;
+    margin: 0.6rem 0 0;
     line-height: 1.7;
+    color: var(--color-muted);
+  }
+
+  .features-platform {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 2.5rem;
+    padding: 1.25rem 1.5rem;
+    border-radius: 1.25rem;
+    background: color-mix(in srgb, var(--color-secondary) 55%, var(--color-surface));
+    border: 1px solid var(--color-border);
+  }
+
+  @media (min-width: 720px) {
+    .features-platform {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .features-platform__item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .features-platform__item strong {
+    font-size: 0.95rem;
+    color: var(--color-primary);
+  }
+
+  .features-platform__item span {
+    font-size: 0.85rem;
+    line-height: 1.6;
     color: var(--color-muted);
   }
 </style>

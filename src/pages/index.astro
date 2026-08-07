@@ -15,7 +15,9 @@ import { ScrollJourney } from '@/components/scroll-world/ScrollJourney'
     <SeoFallback />
     <noscript>
       <section class="section-shell py-16">
-        <h1>صف — مدیریت صف رستوران</h1>
+        {/* Not an <h1>: SeoFallback (above) already renders the page's single
+           canonical h1 unconditionally, incl. with JS disabled. */}
+        <p class="noscript-title">صف — مدیریت صف رستوران</p>
         <p>برای تجربه کامل اسکرول، جاوااسکریپت را فعال کنید.</p>
         <p>
           <a href="https://queuegrow-app.com/">شروع اپ مهمان</a>
@@ -44,6 +46,13 @@ import { ScrollJourney } from '@/components/scroll-world/ScrollJourney'
   .post-journey-stack {
     position: relative;
     z-index: 50;
+  }
+
+  .noscript-title {
+    margin: 0;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 800;
+    color: var(--color-primary);
   }
 </style>
 
