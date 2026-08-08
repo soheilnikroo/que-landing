@@ -19,24 +19,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out landing
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       # The phone-mockup showcase iframes a static build of que-app (see
       # scripts/build-app-showcase.mjs) — check it out alongside the landing
-      # so that script has something to build. Requires que-app to be
-      # readable by this workflow (same owner, or a repo secret token if it's
-      # ever moved to a different account).
+      # so that script has something to build. soheilnikroo/q is private, so the
+      # default GITHUB_TOKEN cannot read it; QUE_APP_TOKEN must be a PAT (or
+      # fine-grained token) with contents:read on that repo.
       - name: Check out que-app
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: soheilnikroo/q
           path: que-app-checkout
+          token: ${{ secrets.QUE_APP_TOKEN }}
 
       - uses: pnpm/action-setup@v4
         with:
           run_install: false
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: '22'
           cache: pnpm
