@@ -8,5 +8,10 @@
     }
   },
   "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist", "node_modules", "public/app-showcase"]
+  "exclude": [
+    "dist",
+    "node_modules",
+    "public/app-showcase",
+    "que-app-checkout"
+  ]
 }

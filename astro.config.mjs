@@ -23,7 +23,7 @@ function publicDirIndexFallback() {
   return {
     name: 'public-dir-index-fallback',
     configureServer(server) {
-      server.middlewares.use((req, res, next) => {
+      server.middlewares.use((req, _res, next) => {
         if (req.url) {
           const urlPath = req.url.split('?')[0].split('#')[0]
           if (urlPath.endsWith('/')) {
