@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "packageManager": "pnpm@10.34.4",
   "scripts": {
     "dev": "pnpm build:app-showcase && astro dev",
     "build": "pnpm build:app-showcase && astro check && astro build",
